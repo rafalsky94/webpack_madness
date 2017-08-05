@@ -1,0 +1,25 @@
+{
+  "name": "webpack_build",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/websolutionslab/webpack_madness.git"
+  },
+  "author": "Qba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/websolutionslab/webpack_madness/issues"
+  },
+  "homepage": "https://github.com/websolutionslab/webpack_madness#readme",
+  "devDependencies": {
+    "webpack": "^3.4.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
