@@ -1,0 +1,10 @@
+React Hot Loader
+Vue Loader
+{
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel-loader',
+                query: {
+                    preset: [ 'es2015' ]
+                }
+            },
