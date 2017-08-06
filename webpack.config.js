@@ -8,6 +8,11 @@ module.exports = {
     entry: {
         app: './app/app.js'
     },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        // publicPath: '/dist'
+    },
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
@@ -15,6 +20,10 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.html$/,
+                use: [ 'html-loader' ]
+            },
             {
                 test: /\.css$/,
                 use: [ 'style-loader', 'css-loader' ]
@@ -26,7 +35,14 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
-                    'file-loader'
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'img/',
+                            publicPath: 'img/'
+                        }
+                    }
                 ]
             },
             {
@@ -40,7 +56,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
-                    presets: [ 'es2015', 'es2017' ]
+                    presets: [ 'es2015' ]
                 }
             }
         ]
@@ -48,13 +64,8 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin([ 'dist' ]),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            template: 'app/index.html'
         }),
         new webpack.HotModuleReplacementPlugin()
-
-    ],
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    }
+    ]
 };
