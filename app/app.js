@@ -1,5 +1,4 @@
 import _ from 'lodash';
-// import 'index.html';
 import printMe from './print.js';
 import './components/styles/main.css';
 
@@ -14,12 +13,10 @@ function component() {
     btn.onclick = printMe;
 
     element.appendChild(btn);
-
     return element;
 }
 
 let element = component(); // Store the element to re-render on print.js changes
-
 
 if ( module.hot ) {
     module.hot.accept('./print.js', function () {
@@ -29,5 +26,4 @@ if ( module.hot ) {
         document.body.appendChild(element);
     })
 }
-
 document.body.appendChild(component());
