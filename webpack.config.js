@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-
 module.exports = {
     entry: {
         app: './app/app.js'
@@ -58,12 +57,29 @@ module.exports = {
                 query: {
                     presets: [ 'es2015' ]
                 }
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]'
+                        }
+                    }
+                ],
+                exclude: path.resolve(__dirname, 'app/index.html')
             }
         ]
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jQuery',
+            jQuery: 'jQuery'
+        }),
         new CleanWebpackPlugin([ 'dist' ]),
         new HtmlWebpackPlugin({
+            filename: 'index.html',
             template: 'app/index.html'
         }),
         new webpack.HotModuleReplacementPlugin()
